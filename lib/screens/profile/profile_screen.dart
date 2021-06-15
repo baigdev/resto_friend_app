@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:resto_friends_app/Constants.dart';
-import 'package:resto_friends_app/Models.dart';
-import 'package:resto_friends_app/ReusableWidgets.dart';
+import 'package:resto_friends_app/utils/models.dart';
 import 'package:intl/intl.dart';
-import 'package:resto_friends_app/Screens.dart';
+import 'package:resto_friends_app/screens/main/main_screen.dart';
+import 'package:resto_friends_app/utils/colors.dart';
+import 'package:resto_friends_app/utils/text_styles.dart';
+import 'package:resto_friends_app/utils/buttons.dart';
 
-class ProfileHeader extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: MyAppColors.white,
+        backgroundColor: MyColors.white,
         title: Text(
           'Profile',
-          style: TextFonts.montserratBold(
-              color: MyAppColors.grey300, fontSize: 15),
+          style:
+              TextStyles.montserratBold(color: MyColors.grey300, fontSize: 15),
         ),
         leading: GestureDetector(
           onTap: () {
@@ -24,7 +25,7 @@ class ProfileHeader extends StatelessWidget {
           },
           child: Icon(
             Icons.arrow_back,
-            color: MyAppColors.grey300,
+            color: MyColors.grey300,
           ),
         ),
         actions: [
@@ -32,7 +33,7 @@ class ProfileHeader extends StatelessWidget {
             margin: EdgeInsets.only(right: 10),
             child: Icon(
               Icons.edit_rounded,
-              color: MyAppColors.grey300,
+              color: MyColors.grey300,
             ),
           ),
         ],
@@ -88,7 +89,7 @@ class UserContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      color: MyAppColors.white,
+      color: MyColors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -102,7 +103,8 @@ class UserContainer extends StatelessWidget {
           ),
           Text(
             'Chloe Hannouille',
-            style: TextFonts.montserratBold(color: Colors.indigo, fontSize: 20),
+            style:
+                TextStyles.montserratBold(color: Colors.indigo, fontSize: 20),
           ),
           SizedBox(
             height: 10,
@@ -112,11 +114,11 @@ class UserContainer extends StatelessWidget {
             children: [
               Icon(
                 Icons.location_on,
-                color: MyAppColors.grey300,
+                color: MyColors.grey300,
               ),
               Text(
                 'Dhaka Bangladesh',
-                style: TextFonts.montserratBold(
+                style: TextStyles.montserratBold(
                     color: Colors.grey.shade300, fontSize: 13),
               ),
             ],
@@ -142,7 +144,7 @@ class FollowingRow extends StatelessWidget {
               children: [
                 Text(
                   '121k',
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.pink, fontSize: 12),
                 ),
                 SizedBox(
@@ -150,8 +152,8 @@ class FollowingRow extends StatelessWidget {
                 ),
                 Text(
                   'Followers',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.grey400, fontSize: 12),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.grey400, fontSize: 12),
                 ),
               ],
             ),
@@ -162,7 +164,7 @@ class FollowingRow extends StatelessWidget {
               children: [
                 Text(
                   '152',
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.pink, fontSize: 12),
                 ),
                 SizedBox(
@@ -170,8 +172,8 @@ class FollowingRow extends StatelessWidget {
                 ),
                 Text(
                   'Following',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.grey400, fontSize: 12),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.grey400, fontSize: 12),
                 ),
               ],
             ),
@@ -182,7 +184,7 @@ class FollowingRow extends StatelessWidget {
               children: [
                 Text(
                   '455',
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.pink, fontSize: 12),
                 ),
                 SizedBox(
@@ -190,8 +192,8 @@ class FollowingRow extends StatelessWidget {
                 ),
                 Text(
                   'Taste Makers',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.grey400, fontSize: 12),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.grey400, fontSize: 12),
                 ),
               ],
             ),
@@ -283,7 +285,7 @@ class GridItemsContainer extends StatelessWidget {
     DateTime now = DateTime.now();
     String date = DateFormat('MM-dd-yyyy').format(now);
     return Container(
-      color: MyAppColors.white,
+      color: MyColors.white,
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -318,7 +320,7 @@ class GridItemsContainer extends StatelessWidget {
               margin: EdgeInsets.only(left: 10),
               child: Text(
                 model.fruitName,
-                style: TextFonts.montserratBold(
+                style: TextStyles.montserratBold(
                     color: Colors.indigo, fontSize: 15),
               )),
           Container(
@@ -328,12 +330,12 @@ class GridItemsContainer extends StatelessWidget {
               children: [
                 Text(
                   model.dishName,
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.grey.shade300, fontSize: 10),
                 ),
                 Text(
                   date,
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.grey.shade300, fontSize: 10),
                 ),
               ],

@@ -1,9 +1,41 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:resto_friends_app/Constants.dart';
-import 'package:resto_friends_app/Models.dart';
-import 'package:resto_friends_app/ReusableWidgets.dart';
-import 'package:resto_friends_app/PostDetailReusableWidgets.dart';
+import 'package:resto_friends_app/utils/const.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:resto_friends_app/utils/models.dart';
+import 'package:resto_friends_app/screens/post/post_screen.dart';
+import 'package:resto_friends_app/utils/colors.dart';
+import 'package:resto_friends_app/utils/text_styles.dart';
+import 'package:resto_friends_app/utils/buttons.dart';
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Find a restaurant...',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: MyColors.red,
+                  ),
+                  suffixIcon: Icon(Icons.mic_none),
+                ),
+              ),
+            ),
+            HomeBody(),
+          ],
+        ),
+      ),
+      // child:
+    );
+  }
+}
 
 class HomeBody extends StatelessWidget {
   @override
@@ -103,7 +135,7 @@ class UserPostInfoWidget extends StatelessWidget {
           Container(
             child: CircleAvatar(
               radius: 30,
-              backgroundColor: MyAppColors.white,
+              backgroundColor: MyColors.white,
               backgroundImage: NetworkImage(imageLink),
             ),
           ),
@@ -121,8 +153,8 @@ class UserPostInfoWidget extends StatelessWidget {
                   Container(
                     child: Text(
                       userName,
-                      style: TextFonts.montserratBold(
-                          color: Colors.indigo,
+                      style: TextStyles.montserratBold(
+                          color: MyColors.indigo,
                           fontSize: WidgetSizes.boldTextSize),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -134,8 +166,8 @@ class UserPostInfoWidget extends StatelessWidget {
                   Text(
                     'Rated a new restaurant',
                     maxLines: 1,
-                    style: TextFonts.montserratBold(
-                        color: Colors.grey.shade300,
+                    style: TextStyles.montserratBold(
+                        color: MyColors.grey300,
                         fontSize: WidgetSizes.lightTextSize),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -146,7 +178,7 @@ class UserPostInfoWidget extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.alarm,
-                        color: Colors.grey.shade400,
+                        color: MyColors.grey400,
                         size: 15,
                       ),
                       SizedBox(
@@ -156,8 +188,8 @@ class UserPostInfoWidget extends StatelessWidget {
                         child: Container(
                           child: Text(
                             'Posted $postTime hours ago',
-                            style: TextFonts.montserratBold(
-                                color: Colors.grey.shade300,
+                            style: TextStyles.montserratBold(
+                                color: MyColors.grey300,
                                 fontSize: WidgetSizes.lightTextSize),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -184,9 +216,8 @@ class UserPostInfoWidget extends StatelessWidget {
                 ),
                 Text(
                   'Outstanding!',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.red,
-                      fontSize: WidgetSizes.lightTextSize),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.red, fontSize: WidgetSizes.lightTextSize),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
@@ -200,7 +231,7 @@ class UserPostInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: MyColors.white,
       child: Column(
         children: [
           header(),
@@ -218,7 +249,7 @@ class UserPostWidget extends StatelessWidget {
       @required this.loves,
       @required this.comments});
 
-  String hotelImageLink, hotelName, streetName, loves, comments;
+  final String hotelImageLink, hotelName, streetName, loves, comments;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -240,7 +271,7 @@ class UserPostWidget extends StatelessWidget {
               height: 250,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: MyAppColors.white,
+                color: MyColors.white,
                 borderRadius: BorderRadius.horizontal(
                   right: Radius.circular(10),
                   left: Radius.circular(10),
@@ -251,7 +282,7 @@ class UserPostWidget extends StatelessWidget {
                 ),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                      color: MyAppColors.pinkLight,
+                      color: MyColors.pinkLight,
                       blurRadius: 40,
                       offset: Offset(0, 75),
                       spreadRadius: -50)
@@ -266,7 +297,7 @@ class UserPostWidget extends StatelessWidget {
                     child: Container(
                       height: 90,
                       width: size.width * .6,
-                      color: Colors.white,
+                      color: MyColors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -278,8 +309,8 @@ class UserPostWidget extends StatelessWidget {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 streetName,
-                                style: TextFonts.montserratBold(
-                                    color: Colors.grey.shade300,
+                                style: TextStyles.montserratBold(
+                                    color: MyColors.grey300,
                                     fontSize: WidgetSizes.boldTextSize),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
@@ -303,12 +334,12 @@ class UserPostWidget extends StatelessWidget {
                       Icon(
                         Icons.favorite_outline,
                         size: 35,
-                        color: MyAppColors.red,
+                        color: MyColors.red,
                       ),
                       Text(
                         loves,
-                        style: TextFonts.montserratBold(
-                            color: Colors.indigo,
+                        style: TextStyles.montserratBold(
+                            color: MyColors.indigo,
                             fontSize: WidgetSizes.boldTextSize),
                       ),
                     ],
@@ -317,19 +348,19 @@ class UserPostWidget extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.comment_bank,
-                        color: Colors.grey.shade400,
+                        color: MyColors.grey400,
                       ),
                       Text(
                         '$comments comments',
-                        style: TextFonts.montserratBold(
-                            color: Colors.grey.shade400,
+                        style: TextStyles.montserratBold(
+                            color: MyColors.grey400,
                             fontSize: WidgetSizes.lightTextSize),
                       ),
                     ],
                   ),
                   Icon(
                     Icons.more_vert,
-                    color: Colors.grey.shade400,
+                    color: MyColors.grey400,
                   ),
                 ],
               ),
@@ -355,7 +386,7 @@ class RestoFriendsListWidget extends StatelessWidget {
           Container(
             height: 230,
             width: 150,
-            color: Colors.white,
+            color: MyColors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -381,8 +412,8 @@ class RestoFriendsListWidget extends StatelessWidget {
                 ),
                 Text(
                   model.name,
-                  style: TextFonts.montserratBold(
-                      color: Colors.indigo,
+                  style: TextStyles.montserratBold(
+                      color: MyColors.indigo,
                       fontSize: WidgetSizes.lightTextSize),
                 ),
                 SizedBox(
@@ -390,8 +421,8 @@ class RestoFriendsListWidget extends StatelessWidget {
                 ),
                 Text(
                   model.tag,
-                  style: TextFonts.montserratBold(
-                      color: Colors.grey.shade400,
+                  style: TextStyles.montserratBold(
+                      color: MyColors.grey400,
                       fontSize: WidgetSizes.lightTextSize),
                 ),
                 SizedBox(
@@ -403,7 +434,7 @@ class RestoFriendsListWidget extends StatelessWidget {
                         right: Radius.circular(10),
                         left: Radius.circular(10),
                       ),
-                      color: MyAppColors.red,
+                      color: MyColors.red,
                     ),
                     margin: EdgeInsets.only(left: 20, right: 20),
                     height: 40,
@@ -459,14 +490,14 @@ class MakeFriendsList extends StatelessWidget {
               children: [
                 Text(
                   'RestoFriends',
-                  style: TextFonts.montserratBold(
-                      color: Colors.indigo, fontSize: WidgetSizes.boldTextSize),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.indigo,
+                      fontSize: WidgetSizes.boldTextSize),
                 ),
                 Text(
                   'View all',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.red,
-                      fontSize: WidgetSizes.boldTextSize),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.red, fontSize: WidgetSizes.boldTextSize),
                 ),
               ],
             ),

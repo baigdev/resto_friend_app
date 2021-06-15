@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:resto_friends_app/PostDetailReusableWidgets.dart';
-import 'package:resto_friends_app/ReusableWidgets.dart';
-import 'package:resto_friends_app/Constants.dart';
+import 'package:resto_friends_app/screens/post/post_screen.dart';
+import 'package:resto_friends_app/utils/text_styles.dart';
+import 'package:resto_friends_app/utils/colors.dart';
+import 'package:resto_friends_app/utils/buttons.dart';
 
 class AddReview extends StatelessWidget {
   @override
@@ -24,14 +25,14 @@ class AddReview extends StatelessWidget {
           },
           child: Icon(
             Icons.arrow_back,
-            color: MyAppColors.grey400,
+            color: MyColors.grey400,
           ),
         ),
         elevation: 0,
-        backgroundColor: MyAppColors.white,
+        backgroundColor: MyColors.white,
       ),
       body: Container(
-        color: MyAppColors.white,
+        color: MyColors.white,
         child: ListView(
           children: [
             Column(
@@ -41,8 +42,8 @@ class AddReview extends StatelessWidget {
                   margin: EdgeInsets.all(20),
                   child: Text(
                     'Give your rating',
-                    style: TextFonts.montserratBold(
-                        color: MyAppColors.indigo, fontSize: 15),
+                    style: TextStyles.montserratBold(
+                        color: MyColors.indigo, fontSize: 15),
                   ),
                 ),
                 Container(
@@ -66,16 +67,16 @@ class AddReview extends StatelessWidget {
                   margin: EdgeInsets.all(20),
                   child: Text(
                     'Outstanding',
-                    style: TextFonts.montserratBold(
-                        color: MyAppColors.red, fontSize: 12),
+                    style: TextStyles.montserratBold(
+                        color: MyColors.red, fontSize: 12),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.all(20),
                   child: Text(
                     'Give more information to your friends about the environment, the food...',
-                    style: TextFonts.montserratBold(
-                        color: MyAppColors.indigo, fontSize: 15),
+                    style: TextStyles.montserratBold(
+                        color: MyColors.indigo, fontSize: 15),
                   ),
                 ),
                 Container(
@@ -90,8 +91,8 @@ class AddReview extends StatelessWidget {
                           width: 80,
                           child: Text(
                             '(160) max',
-                            style: TextFonts.montserratBold(
-                                color: MyAppColors.grey400, fontSize: 12),
+                            style: TextStyles.montserratBold(
+                                color: MyColors.grey400, fontSize: 12),
                           )),
                     ),
                   ),
@@ -107,10 +108,10 @@ class AddReview extends StatelessWidget {
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color: MyAppColors.pinkLight),
+                          color: MyColors.pinkLight),
                       child: Icon(
                         Icons.photo,
-                        color: MyAppColors.red,
+                        color: MyColors.red,
                         size: 20,
                       ),
                     ),
@@ -118,8 +119,8 @@ class AddReview extends StatelessWidget {
                       margin: EdgeInsets.only(right: 10),
                       child: Text(
                         'Add More Photos',
-                        style: TextFonts.montserratBold(
-                            color: MyAppColors.grey400, fontSize: 15),
+                        style: TextStyles.montserratBold(
+                            color: MyColors.grey400, fontSize: 15),
                       ),
                     ),
                   ],
@@ -127,7 +128,7 @@ class AddReview extends StatelessWidget {
                 SizedBox(height: 20),
                 Container(
                   height: 1,
-                  color: MyAppColors.grey300,
+                  color: MyColors.grey300,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,8 +138,8 @@ class AddReview extends StatelessWidget {
                       margin: EdgeInsets.all(20),
                       child: Text(
                         'Add tag to make search easier',
-                        style: TextFonts.montserratBold(
-                            color: MyAppColors.indigo, fontSize: 15),
+                        style: TextStyles.montserratBold(
+                            color: MyColors.indigo, fontSize: 15),
                       ),
                     ),
                     Container(
@@ -162,7 +163,7 @@ class AddReview extends StatelessWidget {
                 ),
                 Container(
                   height: 1,
-                  color: MyAppColors.grey300,
+                  color: MyColors.grey300,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

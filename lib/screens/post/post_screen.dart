@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:resto_friends_app/Models.dart';
-import 'package:resto_friends_app/Screens.dart';
-import 'ReusableWidgets.dart';
-import 'package:resto_friends_app/Constants.dart';
+import 'package:resto_friends_app/utils/models.dart';
+import 'package:resto_friends_app/utils/const.dart';
+import '../review/review_screen.dart';
+import 'package:resto_friends_app/utils/colors.dart';
+import 'package:resto_friends_app/utils/text_styles.dart';
+import 'package:resto_friends_app/utils/buttons.dart';
 
 class PostDetailsHeader extends StatelessWidget {
   @override
@@ -20,13 +22,13 @@ class PostDetailsHeader extends StatelessWidget {
                         margin: EdgeInsets.only(right: 10),
                         child: Icon(
                           Icons.bookmark_border_sharp,
-                          color: MyAppColors.grey400,
+                          color: MyColors.grey400,
                         ))
                   ],
                   expandedHeight: 300,
                   pinned: true,
                   backgroundColor: Colors.white,
-                  iconTheme: IconThemeData(color: MyAppColors.grey400),
+                  iconTheme: IconThemeData(color: MyColors.grey400),
                   elevation: 0,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image(
@@ -40,7 +42,7 @@ class PostDetailsHeader extends StatelessWidget {
             },
             body: Container(
               height: 400,
-              color: MyAppColors.white,
+              color: MyColors.white,
               child: ListView(
                 children: [
                   Column(
@@ -79,7 +81,7 @@ class PostDetailsInfo extends StatelessWidget {
               children: [
                 Text(
                   'X Sky Lounge',
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.indigo, fontSize: WidgetSizes.boldTextSize),
                 ),
                 RatingContainer(
@@ -91,7 +93,7 @@ class PostDetailsInfo extends StatelessWidget {
             ),
             Text(
               'Hill Road, West baston,Central Japan',
-              style: TextFonts.montserratBold(
+              style: TextStyles.montserratBold(
                   color: Colors.grey.shade300,
                   fontSize: WidgetSizes.lightTextSize),
             ),
@@ -101,13 +103,12 @@ class PostDetailsInfo extends StatelessWidget {
               children: [
                 Text(
                   'Closed in 45 minutes',
-                  style: TextFonts.montserratBold(
-                      color: MyAppColors.red,
-                      fontSize: WidgetSizes.lightTextSize),
+                  style: TextStyles.montserratBold(
+                      color: MyColors.red, fontSize: WidgetSizes.lightTextSize),
                 ),
                 Text(
                   ' 11AM to 12Midnight(Today)',
-                  style: TextFonts.montserratBold(
+                  style: TextStyles.montserratBold(
                       color: Colors.grey.shade300,
                       fontSize: WidgetSizes.lightTextSize),
                 ),
@@ -116,7 +117,7 @@ class PostDetailsInfo extends StatelessWidget {
             SizedBox(height: 5),
             Text(
               'Casual Dinnig - Chinese, Pizza',
-              style: TextFonts.montserratBold(
+              style: TextStyles.montserratBold(
                   color: Colors.grey.shade300,
                   fontSize: WidgetSizes.lightTextSize),
             ),
@@ -189,8 +190,8 @@ class RatingWidget extends StatelessWidget {
             margin: EdgeInsets.all(20),
             child: Text(
               'Your rating!',
-              style: TextFonts.montserratBold(
-                  color: MyAppColors.indigo, fontSize: 20),
+              style: TextStyles.montserratBold(
+                  color: MyColors.indigo, fontSize: 20),
             ),
           ),
           Container(
@@ -218,7 +219,7 @@ class RatingWidget extends StatelessWidget {
               margin: EdgeInsets.only(left: 20),
               child: Text(
                 'We would love to hear more about your experience!',
-                style: TextFonts.montserratBold(
+                style: TextStyles.montserratBold(
                     color: Colors.grey.shade300,
                     fontSize: WidgetSizes.lightTextSize),
               )),
@@ -232,14 +233,14 @@ class RatingWidget extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return AddReviewScreen();
+                    return AddReview();
                   }),
                 );
               },
               child: Text(
                 'Add Your Review',
-                style: TextFonts.montserratBold(
-                    color: MyAppColors.red, fontSize: 15),
+                style: TextStyles.montserratBold(
+                    color: MyColors.red, fontSize: 15),
               ),
             ),
           ),
@@ -261,13 +262,13 @@ class ReviewsWidget extends StatelessWidget {
             children: [
               Text(
                 'Reviews',
-                style: TextFonts.montserratBold(
-                    color: MyAppColors.indigo, fontSize: 20),
+                style: TextStyles.montserratBold(
+                    color: MyColors.indigo, fontSize: 20),
               ),
               Text(
                 'Read all(400)',
-                style: TextFonts.montserratBold(
-                    color: MyAppColors.red, fontSize: 15),
+                style: TextStyles.montserratBold(
+                    color: MyColors.red, fontSize: 15),
               )
             ],
           ),
@@ -301,13 +302,13 @@ class ReviewsWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'Chloe Hannouille',
-                                style: TextFonts.montserratBold(
-                                    color: MyAppColors.indigo, fontSize: 15),
+                                style: TextStyles.montserratBold(
+                                    color: MyColors.indigo, fontSize: 15),
                               ),
                               SizedBox(height: 5),
                               Text(
                                 '45 Reviews, 353 Followers',
-                                style: TextFonts.montserratBold(
+                                style: TextStyles.montserratBold(
                                     color: Colors.grey.shade300,
                                     fontSize: WidgetSizes.lightTextSize),
                               ),
@@ -326,7 +327,7 @@ class ReviewsWidget extends StatelessWidget {
                   child: Text(
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit,send do eiusmod tempor incididunt ut labore et dolore mangna aliqua.',
                     style: TextStyle(
-                        color: MyAppColors.grey400, fontSize: 15, height: 2),
+                        color: MyColors.grey400, fontSize: 15, height: 2),
                   ),
                 ),
               ],

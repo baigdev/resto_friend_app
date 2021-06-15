@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Screens.dart';
-import 'addReviewScreen.dart';
+import 'package:resto_friends_app/screens/main/main_screen.dart';
 
 void main() {
   runApp(
