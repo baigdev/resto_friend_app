@@ -20,3 +20,23 @@ class ProfileDetailsImagesModel {
   ProfileDetailsImagesModel({@required this.imageLink});
   final String imageLink;
 }
+
+class UserPostInfoModel {
+  UserPostInfoModel(
+      {@required this.userName,
+      @required this.imageLink,
+      @required this.postTime,
+      @required this.ratingNum});
+  String userName, imageLink, postTime, ratingNum;
+}
+
+class UserPostModel {
+  UserPostModel({
+    @required this.hotelImageLink,
+    @required this.hotelName,
+    @required this.streetName,
+    @required this.loves,
+    @required this.comments,
+  });
+  String hotelImageLink, hotelName, streetName, loves, comments;
+}
