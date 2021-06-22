@@ -7,6 +7,7 @@ import 'package:resto_friends_app/utils/colors.dart';
 import 'package:resto_friends_app/utils/text_styles.dart';
 
 int rID;
+FocusNode myFocusNode;
 
 class Comments extends StatefulWidget {
   Comments({@required this.postModel});
@@ -16,6 +17,12 @@ class Comments extends StatefulWidget {
 }
 
 class _CommentsState extends State<Comments> {
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+  }
+
   final enteredText = TextEditingController();
 
   void submitData() {
@@ -45,7 +52,9 @@ class _CommentsState extends State<Comments> {
             replyList: replies);
       }
       rID = null;
+      widget.postModel.comments = widget.postModel.commentsList.length;
     });
+    enteredText.clear();
   }
 
   @override
@@ -62,6 +71,7 @@ class _CommentsState extends State<Comments> {
                   userWidget(widget.postModel),
                   PostWidget(
                     model: widget.postModel,
+                    screenChangeCallBack: () => Navigator.pop(context),
                   ),
                   ListView.builder(
                       itemCount: widget.postModel.commentsList.length,
@@ -76,10 +86,10 @@ class _CommentsState extends State<Comments> {
                             ? Column(
                                 children: [
                                   CommentMaker(
-                                    postModel: widget.postModel,
+                                    c_id: widget.postModel.commentsList[index]
+                                        .commentId,
                                     data: widget
                                         .postModel.commentsList[index].comment,
-                                    index: index,
                                   ),
                                   ListView.builder(
                                       padding: EdgeInsets.only(left: 30.0),
@@ -89,8 +99,8 @@ class _CommentsState extends State<Comments> {
                                           .commentsList[index].replyList.length,
                                       itemBuilder: (context, i) {
                                         return CommentMaker(
-                                          index: i,
-                                          postModel: widget.postModel,
+                                          c_id: widget.postModel
+                                              .commentsList[index].commentId,
                                           data: widget
                                               .postModel
                                               .commentsList[index]
@@ -101,10 +111,10 @@ class _CommentsState extends State<Comments> {
                                 ],
                               )
                             : CommentMaker(
-                                postModel: widget.postModel,
+                                c_id: widget
+                                    .postModel.commentsList[index].commentId,
                                 data: widget
                                     .postModel.commentsList[index].comment,
-                                index: index,
                               );
                       })
                 ],
@@ -115,13 +125,14 @@ class _CommentsState extends State<Comments> {
               child: Row(
                 children: [
                   CircleAvatar(
-                      radius: 30,
+                      radius: 25,
                       backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80')),
+                          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80')),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: TextField(
+                        focusNode: myFocusNode,
                         decoration: InputDecoration(
                           hintText: 'Write a comment...',
                           border: OutlineInputBorder(
@@ -143,16 +154,14 @@ class _CommentsState extends State<Comments> {
 }
 
 class CommentMaker extends StatefulWidget {
-  CommentMaker({this.data, this.index, this.postModel});
+  CommentMaker({this.data, this.c_id});
   final String data;
-  final int index;
-  final PostModel postModel;
+  final int c_id;
   @override
   _CommentMakerState createState() => _CommentMakerState();
 }
 
 class _CommentMakerState extends State<CommentMaker> {
-  List<CommentMaker> list = [];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,7 +179,7 @@ class _CommentMakerState extends State<CommentMaker> {
                   child: CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80')),
+                          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80')),
                 ),
                 Expanded(
                   child: Container(
@@ -218,9 +227,9 @@ class _CommentMakerState extends State<CommentMaker> {
                 padding: EdgeInsets.only(left: 30),
                 child: GestureDetector(
                   onTap: () {
+                    myFocusNode.requestFocus();
                     setState(() {
-                      rID =
-                          widget.postModel.commentsList[widget.index].commentId;
+                      rID = widget.c_id;
                     });
                   },
                   child: Text(
