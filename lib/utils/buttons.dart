@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resto_friends_app/models/models.dart';
 import 'package:resto_friends_app/utils/colors.dart';
 import 'package:resto_friends_app/utils/text_styles.dart';
 import 'package:resto_friends_app/utils/const.dart';
@@ -144,7 +145,7 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
 class RatingContainer extends StatelessWidget {
   RatingContainer(
       {@required this.ratings, @required this.height, @required this.width});
-  final String ratings;
+  final RatingModel ratings;
   final double height, width;
 
   @override
@@ -159,7 +160,7 @@ class RatingContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            ratings,
+            ratings.ratingNum,
             style: TextStyles.montserratBold(color: MyColors.red, fontSize: 15),
           ),
           Icon(

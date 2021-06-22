@@ -15,13 +15,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: makeBottomNavBar(),
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 
-  Widget buildBody() {
+  Widget buildBody(BuildContext context) {
     if (globalCurrentIndex == 0)
-      return Home();
+      return home(context);
     else if (globalCurrentIndex == 3) return ProfileScreen();
     return null;
   }

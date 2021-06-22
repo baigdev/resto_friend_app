@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resto_friends_app/models/model_data.dart';
 import 'package:resto_friends_app/screens/post/post_screen.dart';
 import 'package:resto_friends_app/utils/text_styles.dart';
 import 'package:resto_friends_app/utils/colors.dart';
@@ -47,22 +48,17 @@ class AddReview extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 15),
-                  child: Row(
-                    children: [
-                      Buttons.postDetailsRatingButton(
-                          text: '1', iconData: Icons.star),
-                      Buttons.postDetailsRatingButton(
-                          text: '2', iconData: Icons.star),
-                      Buttons.postDetailsRatingButton(
-                          text: '3', iconData: Icons.star),
-                      Buttons.postDetailsRatingButton(
-                          text: '4', iconData: Icons.star),
-                      Buttons.postDetailsRatingButton(
-                          text: '5', iconData: Icons.star),
-                    ],
-                  ),
-                ),
+                    height: 30,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(left: 15),
+                    child: ListView.builder(
+                        itemCount: ratingNum.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Buttons.postDetailsRatingButton(
+                              text: ratingNum[index].ratingNum,
+                              iconData: Icons.star);
+                        })),
                 Container(
                   margin: EdgeInsets.all(20),
                   child: Text(
@@ -99,7 +95,7 @@ class AddReview extends StatelessWidget {
                 ),
                 Container(
                     margin: EdgeInsets.all(10),
-                    child: PostDetailRestoImagsWidget()),
+                    child: postDetailRestoImagesWidget()),
                 Row(
                   children: [
                     Container(
