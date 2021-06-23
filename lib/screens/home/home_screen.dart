@@ -8,6 +8,7 @@ import 'package:resto_friends_app/models/model_data.dart';
 import 'package:resto_friends_app/models/models.dart' as DataModel;
 import 'package:resto_friends_app/Widgets/user_widgets.dart';
 import 'package:resto_friends_app/Widgets/search_widget.dart';
+import 'package:resto_friends_app/screens/comment/comment_screen.dart';
 
 Widget home(BuildContext context) {
   return SafeArea(
@@ -40,9 +41,17 @@ Widget homeBody(List postList, BuildContext context) {
 Widget makeHomeWidgetList(int index, List postList, BuildContext context) {
   return Column(
     children: [
-      userWidget(postList[index]),
+      userWidget(
+        postList[index],
+      ),
       PostWidget(
         model: postList[index],
+        screenChangeCallBack: () {
+          return Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Comments(postModel: postList[index])));
+        },
       ),
       if (postList[index].friendList) friendsList(),
     ],

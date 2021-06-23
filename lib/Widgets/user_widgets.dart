@@ -112,8 +112,9 @@ Widget userWidget(DataModel.PostModel postModel) {
 }
 
 class PostWidget extends StatefulWidget {
-  PostWidget({@required this.model});
+  PostWidget({@required this.model, this.screenChangeCallBack});
   final DataModel.PostModel model;
+  final Function screenChangeCallBack;
   @override
   _PostWidgetState createState() => _PostWidgetState();
 }
@@ -236,14 +237,7 @@ class _PostWidgetState extends State<PostWidget> {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Comments(
-                                    postModel: widget.model,
-                                  )));
-                    },
+                    onTap: widget.screenChangeCallBack,
                     child: Row(
                       children: [
                         Icon(

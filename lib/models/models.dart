@@ -21,6 +21,11 @@ class ProfileDetailsImagesModel {
   final String imageLink;
 }
 
+class RatingModel {
+  RatingModel({@required this.ratingNum});
+  String ratingNum;
+}
+
 class UserModel {
   static List list = [];
   UserModel(
@@ -49,11 +54,6 @@ class PostModel {
   int loves, comments;
   UserModel userModel;
   List<CommentModel> commentsList = [];
-}
-
-class RatingModel {
-  RatingModel({@required this.ratingNum});
-  String ratingNum;
 }
 
 class CommentModel {

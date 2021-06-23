@@ -71,7 +71,7 @@ class _CommentsState extends State<Comments> {
                   userWidget(widget.postModel),
                   PostWidget(
                     model: widget.postModel,
-                    screenChangeCallBack: () => Navigator.pop(context),
+                    // screenChangeCallBack: () => Navigator.pop(context),
                   ),
                   ListView.builder(
                       itemCount: widget.postModel.commentsList.length,
