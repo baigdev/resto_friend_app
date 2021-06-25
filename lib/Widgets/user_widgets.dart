@@ -7,6 +7,8 @@ import 'package:resto_friends_app/utils/buttons.dart';
 import 'package:resto_friends_app/models/model_data.dart';
 import 'package:resto_friends_app/screens/post/post_screen.dart';
 import 'package:resto_friends_app/screens/comment/comment_screen.dart';
+import 'package:resto_friends_app/Widgets/comment_widget.dart';
+import 'package:resto_friends_app/Widgets/comment_widget.dart';
 
 DataModel.UserModel userPostInfoModel;
 Widget userWidget(DataModel.PostModel postModel) {
@@ -124,7 +126,7 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: 350,
+      height: 290,
       width: double.infinity,
       child: Column(
         children: [
@@ -189,73 +191,6 @@ class _PostWidgetState extends State<PostWidget> {
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (widget.model.likesFlag == false) {
-                              setState(() {
-                                widget.model.loves = widget.model.loves + 1;
-                                widget.model.likesFlag = true;
-                                print('If called');
-                              });
-                            } else if (widget.model.likesFlag == true) {
-                              setState(() {
-                                widget.model.loves = widget.model.loves - 1;
-                                widget.model.likesFlag = false;
-                                print('else if called');
-                              });
-                            }
-                          });
-                        },
-                        child: Icon(
-                          widget.model.likesFlag
-                              ? Icons.favorite
-                              : Icons.favorite_outline,
-                          size: 35,
-                          color: MyColors.red,
-                        ),
-                      ),
-                      Text(
-                        '${widget.model.loves}',
-                        style: TextStyles.montserratBold(
-                            color: MyColors.indigo,
-                            fontSize: WidgetSizes.boldTextSize),
-                      ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: widget.screenChangeCallBack,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.comment_bank,
-                          color: MyColors.grey400,
-                        ),
-                        Text(
-                          '${widget.model.comments} comments',
-                          style: TextStyles.montserratBold(
-                              color: MyColors.grey400,
-                              fontSize: WidgetSizes.lightTextSize),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(
-                    Icons.more_vert,
-                    color: MyColors.grey400,
                   ),
                 ],
               ),

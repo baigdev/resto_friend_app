@@ -7,8 +7,12 @@ import '../review/review_screen.dart';
 import 'package:resto_friends_app/utils/colors.dart';
 import 'package:resto_friends_app/utils/text_styles.dart';
 import 'package:resto_friends_app/utils/buttons.dart';
+import 'package:resto_friends_app/Widgets/ratingWidget.dart';
+import 'package:resto_friends_app/models/models.dart';
 
 class PostDetailsHeader extends StatelessWidget {
+  PostDetailsHeader({this.model});
+  final PostModel model;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,7 +54,7 @@ class PostDetailsHeader extends StatelessWidget {
                     children: [
                       postDetailsInfo(),
                       postDetailRestoImagesWidget(),
-                      ratingWidget(context),
+                      ratingWidget(context, model),
                       SizedBox(
                         height: 20,
                       ),
@@ -153,7 +157,7 @@ Widget postDetailRestoImagesWidget() {
   );
 }
 
-Widget ratingWidget(BuildContext context) {
+Widget ratingWidget(BuildContext context, PostModel postModel) {
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,15 +172,19 @@ Widget ratingWidget(BuildContext context) {
         ),
         Container(
           margin: EdgeInsets.only(left: 20),
-          height: 30,
+          height: 40,
           width: double.infinity,
           child: ListView.builder(
               itemCount: ratingNum.length,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Buttons.postDetailsRatingButton(
-                    text: ratingNum[index].ratingNum, iconData: Icons.star);
+                return PostDetailsDirWidget(
+                  text: ratingNum[index].ratingNum,
+                  iconData: Icons.star,
+                  ratingNum: ratingNum,
+                  index: index,
+                );
               }),
         ),
         SizedBox(

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:resto_friends_app/Widgets/search_widget.dart';
 import 'package:resto_friends_app/Widgets/user_widgets.dart';
 import 'package:resto_friends_app/models/models.dart';
+import 'package:resto_friends_app/screens/home/home_screen.dart';
 import 'package:resto_friends_app/utils/colors.dart';
 import 'package:resto_friends_app/utils/text_styles.dart';
+import 'package:resto_friends_app/Widgets/comment_widget.dart';
 
 int rID;
 FocusNode myFocusNode;
@@ -23,6 +25,7 @@ class _CommentsState extends State<Comments> {
     myFocusNode = FocusNode();
   }
 
+  @override
   final enteredText = TextEditingController();
 
   void submitData() {
@@ -59,7 +62,6 @@ class _CommentsState extends State<Comments> {
 
   @override
   Widget build(BuildContext context) {
-    print('Comment List :: ${widget.postModel.commentsList}');
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -72,6 +74,12 @@ class _CommentsState extends State<Comments> {
                   PostWidget(
                     model: widget.postModel,
                     // screenChangeCallBack: () => Navigator.pop(context),
+                  ),
+                  CommentWidget(
+                    postModel: widget.postModel,
+                    screenChangeCallBack: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   ListView.builder(
                       itemCount: widget.postModel.commentsList.length,
@@ -195,11 +203,6 @@ class _CommentMakerState extends State<CommentMaker> {
                               style: TextStyles.montserratBold(
                                   color: MyColors.grey400, fontSize: 15),
                             ),
-                            // TextSpan(
-                            //   text: widget.replyModel.reply,
-                            //   style: TextStyles.montserratBold(
-                            //       color: MyColors.grey400, fontSize: 15),
-                            // ),
                           ]),
                     ),
                   ),

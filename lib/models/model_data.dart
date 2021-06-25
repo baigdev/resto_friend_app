@@ -133,11 +133,12 @@ List profileGridItemsData = [
       fruitName: 'Springfield',
       dishName: 'States Dishes'),
   ProfileRestoListModel(
-      imageLink:
-          'https://images.chinahighlights.com/allpicture/2017/11/921000f9142441c7acb4e578_cut_800x500_61.jpg',
-      ratingNum: '3',
-      fruitName: 'Breakfast Dine',
-      dishName: 'Costa Rica'),
+    imageLink:
+        'https://images.chinahighlights.com/allpicture/2017/11/921000f9142441c7acb4e578_cut_800x500_61.jpg',
+    ratingNum: '3',
+    fruitName: 'Breakfast Dine',
+    dishName: 'Costa Rica',
+  ),
   ProfileRestoListModel(
       imageLink:
           'https://images.chinahighlights.com/allpicture/2017/11/921000f9142441c7acb4e578_cut_800x500_61.jpg',
@@ -153,9 +154,9 @@ List profileGridItemsData = [
 ];
 
 final List<RatingModel> ratingNum = [
-  RatingModel(ratingNum: '1'),
-  RatingModel(ratingNum: '2'),
-  RatingModel(ratingNum: '3'),
-  RatingModel(ratingNum: '4'),
-  RatingModel(ratingNum: '5'),
+  RatingModel(ratingNum: '1', flag: false),
+  RatingModel(ratingNum: '2', flag: false),
+  RatingModel(ratingNum: '3', flag: false),
+  RatingModel(ratingNum: '4', flag: false),
+  RatingModel(ratingNum: '5', flag: false),
 ];

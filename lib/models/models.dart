@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:resto_friends_app/Widgets/ratingWidget.dart';
 
 class FriendsListModel {
   final String name, imageLink, tag;
@@ -22,8 +23,9 @@ class ProfileDetailsImagesModel {
 }
 
 class RatingModel {
-  RatingModel({@required this.ratingNum});
+  RatingModel({@required this.ratingNum, this.flag});
   String ratingNum;
+  bool flag;
 }
 
 class UserModel {
@@ -54,6 +56,7 @@ class PostModel {
   int loves, comments;
   UserModel userModel;
   List<CommentModel> commentsList = [];
+  List<PostDetailsDirWidget> ratingWidgetList = [];
 }
 
 class CommentModel {

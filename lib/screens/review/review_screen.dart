@@ -48,7 +48,7 @@ class AddReview extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    height: 30,
+                    height: 40,
                     width: double.infinity,
                     margin: EdgeInsets.only(left: 15),
                     child: ListView.builder(

@@ -9,8 +9,10 @@ import 'package:resto_friends_app/models/models.dart' as DataModel;
 import 'package:resto_friends_app/Widgets/user_widgets.dart';
 import 'package:resto_friends_app/Widgets/search_widget.dart';
 import 'package:resto_friends_app/screens/comment/comment_screen.dart';
+import 'package:resto_friends_app/Widgets/comment_widget.dart';
 
 Widget home(BuildContext context) {
+  print('Home fun called');
   return SafeArea(
     child: Container(
       child: Column(
@@ -24,38 +26,63 @@ Widget home(BuildContext context) {
   );
 }
 
-Widget homeBody(List postList, BuildContext context) {
-  print(postList.length);
+Widget homeBody(List postWidget, BuildContext context) {
   return Expanded(
     child: ListView.builder(
-      itemCount: postList.length,
+      itemCount: postWidget.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
       itemBuilder: (BuildContext ctx, int index) {
-        return makeHomeWidgetList(index, postList, context);
+        return MakeHomeWidgetList(
+          postWidget: postWidget[index],
+        );
       },
     ),
   );
 }
 
-Widget makeHomeWidgetList(int index, List postList, BuildContext context) {
-  return Column(
-    children: [
-      userWidget(
-        postList[index],
+class MakeHomeWidgetList extends StatefulWidget {
+  const MakeHomeWidgetList({this.postWidget});
+
+  final DataModel.PostModel postWidget;
+  @override
+  _MakeHomeWidgetListState createState() => _MakeHomeWidgetListState();
+}
+
+class _MakeHomeWidgetListState extends State<MakeHomeWidgetList> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          userWidget(
+            widget.postWidget,
+          ),
+          PostWidget(
+            model: widget.postWidget,
+            screenChangeCallBack: () {
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Comments(postModel: widget.postWidget)));
+            },
+          ),
+          CommentWidget(
+            postModel: widget.postWidget,
+            screenChangeCallBack: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        Comments(postModel: widget.postWidget))).then((value) {
+              setState(() {});
+            }),
+          ),
+          if (widget.postWidget.friendList) friendsList(),
+        ],
       ),
-      PostWidget(
-        model: postList[index],
-        screenChangeCallBack: () {
-          return Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Comments(postModel: postList[index])));
-        },
-      ),
-      if (postList[index].friendList) friendsList(),
-    ],
-  );
+    );
+  }
 }
 
 Widget friendsList() {

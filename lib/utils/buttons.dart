@@ -57,6 +57,16 @@ class Buttons {
   }
 
   static Container postDetailsRatingButton({String text, IconData iconData}) {
+    Color textRedColor = MyColors.red,
+        iconRedColor = MyColors.red,
+        containerRedColor = MyColors.red;
+    Color textWhiteColor, iconWhiteColor, containerWhiterColor = MyColors.white;
+
+    changeRating() {
+      textRedColor = textWhiteColor;
+      iconRedColor = iconWhiteColor;
+    }
+
     return Container(
       height: 40,
       width: 40,
@@ -66,24 +76,26 @@ class Buttons {
           left: Radius.circular(10),
           right: Radius.circular(10),
         ),
-        border: Border.all(width: 1.5, color: MyColors.red),
+        border: Border.all(width: 1.5, color: containerRedColor),
       ),
       child: TextButton(
+        onPressed: () {
+          changeRating();
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
-              style: TextStyle(color: MyColors.red),
+              style: TextStyle(color: textRedColor),
             ),
             Icon(
               iconData,
-              color: MyColors.red,
+              color: iconRedColor,
               size: 10,
             ),
           ],
         ),
-        onPressed: () {},
       ),
     );
   }
